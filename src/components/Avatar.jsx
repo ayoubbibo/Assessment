@@ -1,13 +1,25 @@
 import '../styles/Avatar.css';
-
+import {Card} from 'react-bootstrap/';
+import {Link} from 'react-router-dom';
 function Avatar({ author, categories, id, publishDate, summary,title})
 {
     return (
-		<li className='lmj-plant-item'>
-			<span className='lmj-plant-item-price'>{id}€</span>
-            <img className='lmj-plant-item-cover' src={author.avatar} alt={`${author.name} cover`} />
-			{author.name}
-        </li>
+		<Link to={"/details/" + author.name} state={{data:{author: author, categories: categories, id: id, summary: summary, title: title,publishDate: publishDate}}}>
+			<li key={id} className="post-li">
+				<Card>
+					<Card.Img variant="top" src={author.avatar} className="post-cover__item"/>
+					<Card.Body>
+						<Card.Title>{author.name}</Card.Title>
+						<Card.Text>
+							{title}		
+						</Card.Text>
+					</Card.Body>
+					<Card.Footer>
+					<small className="text-muted">published : {publishDate}</small>
+					</Card.Footer>
+				</Card>
+			</li>
+		</Link>
 	)
 }
 

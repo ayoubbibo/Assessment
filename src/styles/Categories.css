@@ -1,8 +1,43 @@
-.lmj-categories {
-	text-align: center;
-	padding-top: 30px;
+*{
+    box-sizing: border-box;
+}
+.Categories
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.lmj-categories-select {
-	margin-right: 15px;
+.filter-section
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.filter-section > *
+{
+    margin: 15px 0px 15px 15px;
+}
+
+.selected-categories-list
+{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    flex-wrap: wrap;
+    margin: 15px;
+}
+
+.selected-categories-li
+{
+    margin-top : 5px;
+    color : black;
+    display: flex;
+    justify-content: space-between;
+    transition: all 0.5s ease;
+}
+.selected-categories-li:hover
+{
+    color : #22868B;
 }
