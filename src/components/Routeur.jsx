@@ -1,7 +1,7 @@
 import Details from './Details';
 import Home from './Home';
-import ErrorPage from './ErrorPage';
 import {Route, Routes} from 'react-router-dom';
+import ErrorPage from './ErrorPage';
 
 /**
  *  this function It enables the navigation among views of various components in a React 

@@ -1,9 +1,13 @@
 import '../styles/App.css';
 import Axios from "axios";
 import { useEffect, useState } from 'react';
-import AvatarsList from './AvatarsList';
+import PostsList from './PostsList';
 import Banner from './Banner';
 
+/**
+ * this is the main component where the request for fetching data from the api is done
+ * it containes the posts list
+ */
 function Home(){
 const [data, setData] = useState([]);
 useEffect(() => {
@@ -18,7 +22,7 @@ useEffect(() => {
 return(
     <div className="App">
         <Banner/>     
-        <AvatarsList data={data}/>
+        <PostsList data={data}/>
     </div>
 )
 }

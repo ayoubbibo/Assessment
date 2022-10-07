@@ -15,6 +15,7 @@ function Categories({ data , selectedCategories, setSelectedCategory}) {
     useEffect(() => {
         setCategories(
         [...data.reduce(
+			
                     (acc, avatar) =>
                 acc.includes(avatar.categories) ? acc : acc.concat(avatar.categories),
             []
