@@ -2,6 +2,7 @@ header
 {
   font-family: monospace; 
   display: flex;
+  flex-wrap: wrap;
   justify-content:center;
   align-items:center;
   background-color: #16161d;
@@ -10,16 +11,19 @@ header
   border-top-left-radius: 9px;
   border-top-right-radius: 9px;
   border-bottom: 3px ridge #FFFFFF;  
+  box-sizing: border-box;
+  padding: 10px 5px 5px 5px;
 }
   
 .banner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:center;
   border: 2px solid white;
-  border-radius: 50px;
-  width: 20%;
-  margin: 10px 5px 10px 5px;
+  border-radius: 9px;
   color: #252b37;
   animation: textColor 5s ease infinite;
-  padding: 5px 5px 5px 5px;
+  padding: 10px 10px 10px 10px;
 }
 
 @keyframes textColor {

@@ -1,8 +1,11 @@
 import '../styles/Banner.css';
 
-function Banner() {
+/**
+ * the header of the applicaton
+ */
+function Banner({title}) {
 	return <header>
-				<h1 className='banner'>POSTS</h1>
+				<h1 className='banner'>{title}</h1>
 		</header>
 }
 

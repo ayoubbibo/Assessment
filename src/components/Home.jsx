@@ -13,7 +13,7 @@ const [data, setData] = useState([]);
 useEffect(() => {
     Axios.get('http://localhost:3000/api/posts')
     .then(res => { 
-    console.log("We got the data that we need ",res.data.posts)
+    //console.log("We got the data that we need ",res.data.posts)
     setData(res.data.posts);
     }
     )
@@ -21,7 +21,7 @@ useEffect(() => {
 }, [])
 return(
     <div className="App">
-        <Banner/>     
+        <Banner title={"POSTS"}/>     
         <PostsList data={data}/>
     </div>
 )

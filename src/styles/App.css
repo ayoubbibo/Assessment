@@ -4,11 +4,8 @@
     align-items: center;
     flex-direction: column;
     margin: 5px 10px 5px 10px;
-}
-
-.Col {
-    /* border:1px solid white; */
-    margin-bottom: 20px;
+    flex-wrap: wrap;
+    box-sizing: border-box;
 }
 
 .App:after {
@@ -22,7 +19,7 @@
     -ms-filter: blur(4vw);
     filter: blur(4vw);
     background: linear-gradient(180deg, #0fffc1, #7e0fff);
-    background-size: 200% 200% ;
+    background-size: 200% 200%;
     animation: animateGlow 5s ease infinite;
 }
 
@@ -37,38 +34,3 @@
         background-position: 0% 50%;
     }
 }
-
-
-/*
-@media (prefers-reduced-motion: no-preference) {
-.App-logo {
-    animation: App-logo-spin infinite 20s linear;
-}
-}
-
-
-.App-header {
-background-color: #282c34;
-min-height: 100vh;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-font-size: calc(10px + 2vmin);
-color: white;
-}
-
-
-.App-link {
-color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-from {
-    transform: rotate(0deg);
-}
-to {
-    transform: rotate(360deg);
-}
-}
-*/

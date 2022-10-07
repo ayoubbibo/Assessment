@@ -13,16 +13,12 @@
   font-size: 1.1em;
 }
 
-@media screen and (max-width: 576px), (max-height: 500px) {
+@media screen and (max-width: 305px), (max-height: 500px) {
   .post-li 
   {
-    padding: 20px;
-    margin-top: 75px; 
-    margin-bottom:15px;
-    margin-left:0;
-    margin-right:0;
-    min-height: initial;
-    padding-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
   }
 }
 

@@ -57,15 +57,15 @@ function PostsList({data})
                     slice.map(({author, categories, id, publishDate, summary,title}) =>
                         addToRender(selectedCategories,categories) ?
                         (
-                                <Post
-                                    author={author}
-                                    categories={categories}
-                                    id={id}
-                                    publishDate={publishDate}
-                                    summary={summary}
-                                    title={title}
-                                />
-                            
+                            <Post
+                                author={author}
+                                categories={categories}
+                                id={id}
+                                publishDate={publishDate}
+                                summary={summary}
+                                title={title}
+                                key={id}
+                            />    
                         ) : null
                     ) 
                 } 

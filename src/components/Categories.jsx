@@ -78,7 +78,7 @@ function Categories({ data , selectedCategories, setSelectedCategory}) {
 						</option>
 					))}
 				</Form.Select>
-				<Button onClick={() => setCategories(selectedCategories.concat(categories)) + setSelectedCategory([]) } variant="outline-danger">Reset</Button>{' '}
+				<Button className="resetButton" onClick={() => setCategories(selectedCategories.concat(categories)) + setSelectedCategory([]) } variant="outline-danger">Reset</Button>{' '}
 			</section>
 		</div>
 	)

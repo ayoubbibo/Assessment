@@ -1,0 +1,31 @@
+.details-container
+{   
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    padding: 25px 25px 25px 25px;
+    backdrop-filter: blur(100px);
+    -webkit-backdrop-filter: blur(10px);
+    -moz-backdrop-filter: blur(10px); 
+    box-shadow: 0px 10px 30px  rgba(15, 255, 193, .9);
+    animation: animateGlow 5s ease infinite;
+    margin-bottom: 30px;
+}
+
+@media screen and (max-width: 576px), (max-height: 500px) 
+{
+    .details-container
+    {
+        flex-direction: column;
+    }
+}
+
+.details
+{
+    width: 100%;
+}
+.details > *
+{
+    margin : 15px auto 10px auto;
+}
