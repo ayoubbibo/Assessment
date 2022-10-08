@@ -15,9 +15,8 @@ function Details(props){
     //console.log(props);
     //console.log(location, "use Location hook");
     const data = location.state?.data;
-    console.log(data);
     return (
-        <div>
+        <div className="App">
             <Banner title={data.author.name} />
             <div className="details-container">
                 <PostCard  
@@ -44,7 +43,7 @@ function Details(props){
                         <Card.Body>
                             <ListGroup variant="info">
                                 {data.categories.map(category => 
-                                    <ListGroup.Item>
+                                    <ListGroup.Item key={category.id}>
                                         {category.name}        		
                                     </ListGroup.Item>
                                 )}

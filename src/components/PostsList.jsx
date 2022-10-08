@@ -1,7 +1,7 @@
 import Post from './Post';
 import Categories from './Categories';
 import '../styles/PostsList.css';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {Button} from 'react-bootstrap';
 
 /**
@@ -14,65 +14,101 @@ import {Button} from 'react-bootstrap';
 function PostsList({data})
 {    
     const [selectedCategories, setSelectedCategory] = useState([]);
-    const [noOfElement,setnoOfElement] = useState(8);
-
+    const [noOfElement,setnoOfElement] = useState(4);
+    const [noOfElementTrouver,setnoOfElementTrouver] = useState(0);
     /**
-     * this fu nction handle the pagination
+     * this function handle the pagination
      * at the beginning we will show only 8 posts and onClick on the load button we add 4 posts    
     */
-    const loadMore = () => {
-        setnoOfElement(noOfElement + 4); 
-    }
+    const [load, setLoad] = useState(""); 
+
+    useEffect( () => {
+        if(noOfElementTrouver > 0)
+        {
+            if(noOfElement < noOfElementTrouver )
+            {
+                setLoad("Load more - " + (noOfElementTrouver - noOfElement).toString()+" -"); 
+            } else 
+            {
+                setLoad("No more element to Load (0)");    
+            }
+        }else {
+            if(noOfElement < data.length )
+            {
+                setLoad("Load more - " + (data.length - noOfElement).toString()+" -");
+            } else 
+            {
+                setLoad("No more element to Load (0)");    
+            }
+        }
+    },[data.length,noOfElement,noOfElementTrouver]);
+
     const slice = data.slice(0, noOfElement);
-    
+    /**
+     * 
+     */
+    function postsToRender(dat)
+    {
+        return (
+            dat.map(({author, categories, id, publishDate, summary,title}) =>        
+                <Post
+                    author={author}
+                    categories={categories}
+                    id={id}
+                    publishDate={publishDate}
+                    summary={summary}
+                    title={title}
+                    key={id}
+                />    
+            )
+        )
+    }
+
     /**
      * Test if at lest one of the categories of the post matches the selected categories
+     * if there are no selected categories we render all the posts
+     * else if no selected categories matches with the post categories we render nothing (null) 
      * @param  selectedCategories
      * @param  categories the categories of the post to test if we should render the post or not  
      * @returns 
      */
-    function addToRender(selectedCategories, categories){
-        let found;
-        if(selectedCategories.length === 0)
-        { 
-            found = true;
-        } else {
+        function addToRender(selectedCategories, categories){
             const categoriesNames = categories.map(category => category.name);
-            found = categoriesNames.some((cat) => selectedCategories.includes(cat));
+            const found = categoriesNames.some((cat) => selectedCategories.includes(cat));
+            return found;
         }
-        return found;
-    }
     
+    /**
+     * 
+     */
+    const [filteredPosts, setfilteredPosts] = useState([]); 
+    useEffect(
+    () => {
+        setfilteredPosts([...data.map(({author, categories, id, publishDate, summary,title}) =>
+        addToRender(selectedCategories,categories) ? {author, categories, id, publishDate, summary,title} 
+        : null
+        ).filter(c => c !== null)]);
+        setnoOfElementTrouver(filteredPosts.length);
+    }, [data, selectedCategories, filteredPosts.length])
+
+    const slice2 = filteredPosts.slice(0, noOfElement);
+
     return(
-        <div className="posts-list">
-            <Categories
-				data={data}
+        <div className="posts-container">
+            <div className="posts-categories">
+                <Categories
+                data={data}
                 selectedCategories={selectedCategories} 
                 setSelectedCategory={setSelectedCategory}
-               /> 
-            
-            
+                />
+            </div> 
             <ul className="post-display">
                 {
-                    slice.map(({author, categories, id, publishDate, summary,title}) =>
-                        addToRender(selectedCategories,categories) ?
-                        (
-                            <Post
-                                author={author}
-                                categories={categories}
-                                id={id}
-                                publishDate={publishDate}
-                                summary={summary}
-                                title={title}
-                                key={id}
-                            />    
-                        ) : null
-                    ) 
+                    selectedCategories.length === 0 ?  postsToRender(slice) : postsToRender(slice2)
                 } 
             </ul>
-            
-            <Button variant="outline-info" onClick={() => loadMore()}>
-                Load more
+            <Button variant="outline-info" onClick={() => setnoOfElement(noOfElement + 4)}>
+                {load}
             </Button>
         </div>
     )

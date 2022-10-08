@@ -13,7 +13,7 @@
   font-size: 1.1em;
 }
 
-@media screen and (max-width: 305px), (max-height: 500px) {
+@media screen and (max-width: 305px), (max-height: 200px) {
   .post-li 
   {
     margin-left: auto;
