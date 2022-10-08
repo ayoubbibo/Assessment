@@ -1,13 +1,10 @@
 header 
 {
-  
   display: flex;
   flex-wrap: wrap;
   justify-content:center;
   align-items:center;
   background-color: #16161d;
-  border-top-left-radius: 9px;
-  border-top-right-radius: 9px;
   border-bottom: 3px ridge #FFFFFF;  
   box-sizing: border-box;
   padding: 10px 5px 10px 5px;

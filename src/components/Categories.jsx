@@ -10,21 +10,33 @@ import {Form, Button, CloseButton, ListGroup} from 'react-bootstrap';
  * @param selectedCategories the selected categories from the select filter
  * @param setSelectedCategory function to set the selected categories
  */
-function Categories({ data , selectedCategories, setSelectedCategory}) {
-	const [categories,setCategories] = useState([]); 
-    useEffect(() => {
-        setCategories(
-        [...data.reduce(
-                    (acc, avatar) =>
-                acc.includes(avatar.categories) ? acc : acc.concat(avatar.categories),
-            []
-        ).reduce(
-            (acc, category) =>
-            acc.includes(category.name) ? acc : acc.concat(category.name),
-            []
-        )])
-    }, [data])
-    
+function Categories({ data, selectedCategories, setSelectedCategory}) {
+	// this table should containes all the possible categories without duplicating them
+	const [categories,setCategories] = useState([]);
+	
+	/**
+	 * this Effect reduce in the first time all the data to get all the categories then remove the duplicated categories
+	 * and finnally see if there are some selected categories so we dont have to add theme because they was probably savec
+	 * before in the localstorage.
+	 */
+	useEffect(() => { 
+		setCategories(
+		[...data.reduce(
+					(acc, avatar) =>
+				acc.includes(avatar.categories) ? acc : acc.concat(avatar.categories),
+			[]
+		).reduce(
+			(acc, category) =>
+			acc.includes(category.name) ? acc : acc.concat(category.name),
+			[]
+		).reduce(
+			(acc, category) =>
+				selectedCategories.includes(category) ? acc.filter(cat => cat !== category) : acc.concat(category),
+			[]
+		)])
+	}		
+    , [data, selectedCategories]);
+	
 	/**
 	 * Adding the selected category to the selected list and removing it from the categories list
 	 * @param category the category selected 
@@ -33,8 +45,6 @@ function Categories({ data , selectedCategories, setSelectedCategory}) {
 	{
 		const currentCategory = categories.find(c => c === category);
 		if(currentCategory){
-			const listCategory = categories.filter((c) => c !== category)
-			setCategories([...listCategory]);
 			setSelectedCategory(cat => [...cat, category]);
 		}	
 	}
@@ -49,7 +59,6 @@ function Categories({ data , selectedCategories, setSelectedCategory}) {
 		if(currentSelectedCategory)
 		{
 			const newSelectedCategories = selectedCategories.filter((c) => c !== category)
-			setCategories(cat => [...cat, category]);
 			setSelectedCategory([...newSelectedCategories]);
 		}		
 	}
@@ -77,10 +86,10 @@ function Categories({ data , selectedCategories, setSelectedCategory}) {
 						</option>
 					))}
 				</Form.Select>
-				<Button className="resetButton" onClick={() => setCategories(selectedCategories.concat(categories)) + setSelectedCategory([]) } variant="outline-danger">Reset</Button>{' '}
+				<Button className="resetButton" onClick={() => setSelectedCategory([]) } variant="outline-danger">Reset</Button>{' '}
 			</section>
 		</div>
 	)
 }
 
-export default Categories
+export default Categories;

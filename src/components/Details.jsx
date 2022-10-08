@@ -7,17 +7,18 @@ import '../styles/Details.css'
 /**
  * this component render all the details of a post 
  * @param props the data of the author  
- * @returns 
+
  */
-function Details(props){
+function Details(){
+    //we use navigate to le the user change the url and go to the home page
     let navigate = useNavigate();
+    //This hook returns the current location object
     const location = useLocation();
-    //console.log(props);
-    //console.log(location, "use Location hook");
+    // the data to display
     const data = location.state?.data;
     return (
         <div className="App">
-            <Banner title={data.author.name} />
+            <Banner title={data.author.name} onClick={()=> {navigate("/Home")}}/>
             <div className="details-container">
                 <PostCard  
                     author={data.author}
@@ -42,11 +43,12 @@ function Details(props){
                         <Card.Header>Categories</Card.Header>
                         <Card.Body>
                             <ListGroup variant="info">
-                                {data.categories.map(category => 
-                                    <ListGroup.Item key={category.id}>
-                                        {category.name}        		
-                                    </ListGroup.Item>
-                                )}
+                                {
+                                    data.categories.map(category => 
+                                        <ListGroup.Item key={category.id}>
+                                            {category.name}        		
+                                        </ListGroup.Item>
+                                    )}
                             </ListGroup>
                         </Card.Body>
                     </Card>

@@ -1,6 +1,6 @@
 import Details from './Details';
 import Home from './Home';
-import {Route, Routes} from 'react-router-dom';
+import {Route, Routes, useLocation} from 'react-router-dom';
 import ErrorPage from './ErrorPage';
 
 /**
@@ -12,8 +12,9 @@ import ErrorPage from './ErrorPage';
  */
 function Routeur()
 {
+    const location = useLocation();
     return(
-        <Routes>
+        <Routes location={location} key={location.pathname}> 
             <Route path="/Home" exact element={<Home />}/>
             <Route path="/" exact element={<Home />}/>
             <Route path="/details/:authorName" element={<Details />}/>
