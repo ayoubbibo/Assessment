@@ -17,7 +17,7 @@ And
 8. Persist filter state in the query string.
 
 I tried to (1. Include animated transitions between application state, e.g. when filtering)
-but when i was faced to some problems during the installation of the former-motion library
+but when i was faced to some problems during the installation of the framer-motion library
 witch help so much to handle the animated transition between application state but unfortunately
 I did not had the chance to find a solution. 
 
